@@ -35,10 +35,13 @@ def go(args):
     logger.info(f"Convert last_review to datetime")
     df['last_review'] = pd.to_datetime(df['last_review'])
 
-    # 3)  Saving the cleaned artifact
-    logger.info(f"Saving cleaned artifact as '{args.output_artifact}'")
+    # 2.5) Drop records outside the NYC coordinates
+    logger.info(f"Dropping records outside the NYC coordinates. rows: {len(df)}")
     idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
     df = df[idx].copy()
+
+    # 3)  Saving the cleaned artifact
+    logger.info(f"Saving cleaned artifact as '{args.output_artifact}'. rows: {len(df)}")
     df.to_csv(args.output_artifact, index=False)
 
     artifact = wandb.Artifact(
