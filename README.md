@@ -37,6 +37,7 @@ In this project you will build such a pipeline.
 ## Link to project
 - https://github.com/esm2046gh/mldevops_project2.git
 - mlflow run https://github.com/esm2046gh/nd0821-c2-build-model-workflow-starter.git -v 1.1.0 -P hydra_options="etl.sample='sample2.csv'"
+- https://wandb.ai/esm/nyc_airbnb/
 ## Preliminary steps
 ### Fork the Starter kit
 Go to [https://github.com/udacity/nd0821-c2-build-model-workflow-starter](https://github.com/udacity/nd0821-c2-build-model-workflow-starter)
