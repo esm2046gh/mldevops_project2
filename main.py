@@ -52,7 +52,7 @@ def go(config: DictConfig):
                 os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 "main",
                 parameters={
-                    "input_artifact": "trainval_data.csv:latest",
+                    "input_artifact": "sample.csv:latest", # wrong!! ->"trainval_data.csv:latest",
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_sample",
                     "output_description": "Data with outliers and null values removed",
@@ -99,7 +99,7 @@ def go(config: DictConfig):
                 os.path.join(hydra.utils.get_original_cwd(), "src", "train_random_forest"),
                 "main",
                 parameters={
-                    "trainval_artifact": "trainval_data.csv:v0",
+                    "trainval_artifact": "trainval_data.csv:v3",
                     "val_size": config["modeling"]["val_size"],
                     "random_seed": config["modeling"]["random_seed"],
                     "stratify_by": config["modeling"]["stratify_by"],
