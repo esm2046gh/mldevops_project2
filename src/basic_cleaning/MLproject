@@ -6,30 +6,51 @@ entry_points:
     parameters:
 
       input_artifact:
-        description: ## ADD DESCRIPTION
+        description: The artifact name to be processed by basic_cleaning ["sample.csv:latest"]
         type: string
 
       output_artifact:
-        description: ## ADD DESCRIPTION
+        description: The output artifact. It's clean of outliers, wrong formats, etc.
+                     Ready to be used by the model [ "clean_sample.csv"]
         type: string
 
       output_type:
-        description: ## ADD DESCRIPTION
+        description: clean_sample. csv-datafile
         type: string
 
       output_description:
-        description: ## ADD DESCRIPTION
+        description: Data with outliers and null values removed
         type: string
 
       min_price:
-        description: ## ADD DESCRIPTION
-        type: string
+        description: Minimun rental price. A price below this is considered as outlier
+        type: float
 
       max_price:
-        description: ## ADD DESCRIPTION
-        type: string
+        description: Maximun rental price. A price above this is considered as outlier
+        type: float
+
+      min_latitude:
+        description: Minimun latitude border
+        type: float
+
+      max_latitude:
+        description: Maximun latitude border
+        type: float
+
+      min_longitude:
+        description: Minimun longitude border
+        type: float
+
+      max_longitude:
+        description: Maximun longitude border
+        type: float
+
+
 
 
     command: >-
         python run.py  --input_artifact {input_artifact}  --output_artifact {output_artifact}  --output_type {output_type} \
-                       --output_description {output_description}  --min_price {min_price}  --max_price {max_price}
+                       --output_description {output_description}  --min_price {min_price}  --max_price {max_price} \
+                       --min_latitude {min_latitude} --max_latitude {max_latitude} \
+                       --min_longitude {min_longitude} --max_longitude {max_longitude}

@@ -37,7 +37,8 @@ def go(args):
 
     # 2.5) Drop records outside the NYC coordinates
     logger.info(f"Dropping records outside the NYC coordinates. rows: {len(df)}")
-    idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    #idx = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    idx = df['longitude'].between(args.min_longitude, args.max_longitude) & df['latitude'].between(args.min_latitude, args.min_latitude)
     df = df[idx].copy()
 
     # 3)  Saving the cleaned artifact
@@ -90,6 +91,30 @@ if __name__ == "__main__":
         "--max_price", 
         type=float,
         help="Maximum price",
+        required=True
+    )
+    parser.add_argument(
+        "--min_latitude",
+        type=float,
+        help="Minimum latitude",
+        required=True
+    )
+    parser.add_argument(
+        "--max_latitude",
+        type=float,
+        help="Maximum latitude",
+        required=True
+    )
+    parser.add_argument(
+        "--min_longitude",
+        type=float,
+        help="Minimum longitude",
+        required=True
+    )
+    parser.add_argument(
+        "--max_longitude",
+        type=float,
+        help="Maximum longitude",
         required=True
     )
     args = parser.parse_args()
